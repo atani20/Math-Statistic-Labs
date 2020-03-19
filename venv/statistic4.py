@@ -56,19 +56,20 @@ x_axis = np.arange(-4, 4, 0.01)
 #     # yEcdf = ecdf(xEcdf)
 #     #drawPlot(xEcdf, yEcdf, x_axis, y_axis, i + 1, "Normal", size[i])
 #
-# #2 распределение Коши C(x, 0, 1)
-# y_axis = cauchy.pdf(x_axis, 0, 1)
-# for i in range(0, 3):
-#     data = cauchy.rvs(size = size[i])
-#     data = data[(data >= -4) & (data <= 4)]
-#     drawPlotKde(data, 'Cauchy', x_axis, y_axis, size[i])
-#     plt.savefig('Cauchy' + str(size[i]) + '.png')
-#     plt.show()
-#     # ecdf = sm.distributions.ECDF(data)
-#     # xEcdf = np.linspace(min(data), max(data))
-#     # yEcdf = ecdf(xEcdf)
-#     # drawPlot(xEcdf, yEcdf, x_axis, y_axis, i + 1, "Cauchy", size[i])
-#
+#2 распределение Коши C(x, 0, 1)
+y_axis = cauchy.pdf(x_axis, 0, 1)
+y_axis = cauchy.cdf(x_axis, 0, 1)
+for i in range(0, 3):
+    data = cauchy.rvs(size = size[i])
+    #data = data[(data >= -4) & (data <= 4)]
+    # drawPlotKde(data, 'Cauchy', x_axis, y_axis, size[i])
+    # plt.savefig('Cauchy' + str(size[i]) + '.png')
+
+    ecdf = sm.distributions.ECDF(data)
+    xEcdf = np.linspace(min(data), max(data))
+    yEcdf = ecdf(xEcdf)
+    drawPlot(xEcdf, yEcdf, x_axis, y_axis, i + 1, "Cauchy", size[i])
+plt.show()
 # #3  распределение Лапласа L(x, 0, 1/sqrt(2))
 # y_axis = laplace.pdf(x_axis, 0, 1 / 2 ** 0.5)
 # for i in range(0, 3):
@@ -100,19 +101,19 @@ x_axis = np.arange(-4, 4, 0.01)
 # # plt.savefig('Uniform.png')
 # # plt.show()
 
-x_axis = np.arange(0, 20, 1)
-#4 Респределение Пуассона P(k, 10)
-y_axis = poisson.pmf(x_axis, 10)
-for i in range(0, 3):
-    data = poisson.rvs(10, size = size[i])#[np.random.standard_cauchy() for count in range(0,  size[i])]
-    data = data[(data >= 6) & (data <= 14)]
-    drawPlotKde(data, 'Poisson', x_axis, y_axis, size[i])
-    plt.savefig('Poisson' + str(size[i]) + '.png')
-    plt.show()
-    # ecdf = sm.distributions.ECDF(data)
-    # xEcdf = np.linspace(min(data), max(data))
-    # yEcdf = ecdf(xEcdf)
-    # drawPlot(xEcdf, yEcdf, x_axis, poisson.cdf(x_axis, 10), i + 1, "Poisson", size[i])
-plt.savefig('Poisson.png')
-plt.show()
+# x_axis = np.arange(0, 20, 1)
+# #4 Респределение Пуассона P(k, 10)
+# y_axis = poisson.pmf(x_axis, 10)
+# for i in range(0, 3):
+#     data = poisson.rvs(10, size = size[i])#[np.random.standard_cauchy() for count in range(0,  size[i])]
+#     data = data[(data >= 6) & (data <= 14)]
+#     drawPlotKde(data, 'Poisson', x_axis, y_axis, size[i])
+#     plt.savefig('Poisson' + str(size[i]) + '.png')
+#     plt.show()
+#     # ecdf = sm.distributions.ECDF(data)
+#     # xEcdf = np.linspace(min(data), max(data))
+#     # yEcdf = ecdf(xEcdf)
+#     # drawPlot(xEcdf, yEcdf, x_axis, poisson.cdf(x_axis, 10), i + 1, "Poisson", size[i])
+# plt.savefig('Poisson.png')
+# plt.show()
 
